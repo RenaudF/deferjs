@@ -1,9 +1,10 @@
 /* deferjs - v0.0.0 - 2015-06-27
  * Copyright (c) 2015 Renaud Fontana <sirgzu@hotmail.com>
  * Licensed MIT */
-var defer = function(){
+var defer = function(promise){
 	var deferred = {};
-	deferred.promise = new Promise(function(resolve, reject){
+	if (promise instanceof Promise) deferred.promise = promise;
+	else deferred.promise = new Promise(function(resolve, reject){
 		deferred.resolve = resolve;
 		deferred.reject = reject;
 	});

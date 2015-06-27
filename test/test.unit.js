@@ -38,3 +38,11 @@ describe('Testing deferred objects', function(){
 		spy.should.have.been.calledOnce;
 	});
 });
+
+describe('Testing wrapping', function(){
+	it('should wrap an existing promise', function(done){
+		var promise = new Promise(function(resolve, reject) { setTimeout(resolve, 500); });
+		var deferred = defer(promise);
+		deferred.promise.should.eventually.be.fulfilled.notify(done);
+	});
+});
